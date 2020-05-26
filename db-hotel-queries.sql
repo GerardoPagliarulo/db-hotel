@@ -18,6 +18,10 @@ WHERE `name` LIKE 'D%';
 SELECT COUNT(`id`) AS `total accepted`
 FROM `pagamenti`
 WHERE `status` = 'accepted';
+-- *
+SELECT SUM(`price`) AS `total price accepted`
+FROM `pagamenti`
+WHERE `status` = 'accepted';
 -- Qual è il prezzo massimo pagato?
 SELECT MAX(`id`) AS `largest price accepted`
 FROM `pagamenti`
