@@ -23,7 +23,7 @@ SELECT SUM(`price`) AS `total price accepted`
 FROM `pagamenti`
 WHERE `status` = 'accepted';
 -- Qual è il prezzo massimo pagato?
-SELECT MAX(`id`) AS `largest price accepted`
+SELECT MAX(`price`) AS `largest price accepted`
 FROM `pagamenti`
 WHERE `status` = 'accepted';
 -- Seleziona gli ospiti riconosciuti con patente e nati nel 1975
