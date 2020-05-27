@@ -1,3 +1,6 @@
+/***********
+    JOIN
+************/
 -- Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
 SELECT COUNT(`p_o`.`ospite_id`) AS `totale_prenotazioni`, `o`.`name`, `o`.`lastname`
 FROM `prenotazioni_has_ospiti` AS `p_o`
@@ -47,6 +50,9 @@ SELECT *
 FROM `stanze` AS `st`
 LEFT JOIN `prenotazioni` AS `p`
 ON `p`.`stanza_id` = `st`.`id`;
+/***************
+    GROUP BY
+***************/
 -- Conta gli ospiti raggruppandoli per anno di nascita
 SELECT YEAR(`date_of_birth`) AS `anno_di_nascita`, COUNT(id) AS `ospiti`
 FROM `ospiti`
