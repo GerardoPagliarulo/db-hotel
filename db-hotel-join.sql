@@ -66,4 +66,10 @@ SELECT COUNT(`prenotazioni_has_ospiti`.`id`) AS `numero_prenotazioni`, `ospiti`.
 FROM `prenotazioni_has_ospiti`
 INNER JOIN `ospiti`
 ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
-GROUP BY `ospite_id`;
+GROUP BY `ospite_id`
+ORDER BY COUNT(`prenotazioni_has_ospiti`.`id`) DESC;
+-- *
+SELECT COUNT(`id`) AS `numero_prenotazioni_ospiti`
+FROM `prenotazioni_has_ospiti`
+GROUP BY `ospite_id`
+ORDER BY COUNT(`id`) DESC;
