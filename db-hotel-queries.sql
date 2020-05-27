@@ -5,7 +5,8 @@ WHERE `document_type` = 'CI';
 -- Seleziona tutti gli ospiti che sono nati dopo il 1988
 SELECT *
 FROM `ospiti`
-WHERE `date_of_birth` >= '1989-01-01';
+-- WHERE `date_of_birth` >= '1989-01-01';
+WHERE YEAR(`date_of_birth`) > '1988';
 -- Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query)
 SELECT *
 FROM `ospiti`
@@ -26,6 +27,12 @@ WHERE `status` = 'accepted';
 SELECT MAX(`price`) AS `largest price accepted`
 FROM `pagamenti`
 WHERE `status` = 'accepted';
+-- *
+SELECT `price`
+FROM `pagamenti`
+WHERE `status` = 'accepted'
+ORDER BY `price` DESC
+LIMIT 1;
 -- Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 SELECT *
 FROM `ospiti`
