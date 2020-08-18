@@ -25,10 +25,19 @@ ON `pg`.`pagante_id` = `pag`.`id`
 WHERE EXTRACT(YEAR_MONTH FROM `p`.`created_at`) = '201805';
 -- Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
 SELECT SUM(`pg`.`price`) AS `tot_price_first_floor_room`
+FROM `prenotazioni` AS `p`
+INNER JOIN `pagamenti` AS `pg`
+ON `p`.`id` = `pg`.`prenotazione_id`
+INNER JOIN `stanze` AS `st`
+ON `p`.`stanza_id` = `st`.`id`
+WHERE `st`.`floor` = 1;
+AND `pg`.`status` = 'accepted';
+-- *
+SELECT SUM(`pg`.`price`) AS `tot_price_first_floor_room`
 FROM `pagamenti` AS `pg`
 INNER JOIN `prenotazioni` AS `p`
 ON `pg`.`prenotazione_id` = `p`.`id`
-WHERE `p`.`stanza_id` <= '6';
+WHERE `p`.`stanza_id` <= 6;
 -- Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
 SELECT `st`.`room_number`, `p`.`id` AS `prenotazioni`
 FROM `stanze` AS `st`
@@ -68,6 +77,7 @@ INNER JOIN `ospiti`
 ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
 GROUP BY `ospite_id`
 ORDER BY COUNT(`prenotazioni_has_ospiti`.`id`) DESC;
+-- LIMIT 1;
 -- *
 SELECT COUNT(`id`) AS `numero_prenotazioni_ospiti`
 FROM `prenotazioni_has_ospiti`
